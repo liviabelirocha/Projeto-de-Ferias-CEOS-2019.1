@@ -12,32 +12,19 @@ export class Register extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			emailInput: "",
-			userInput: "",
-			passwordInput: ""
+			email: '',
+			user: '',
+			password: '',
 		};
-		this.infoSend = this.infoSend.bind(this);
 	}
 
-	infoSend(e) {
-		this.setState({
-			emailInput: e.target.value,
-			userInput: e.target.value,
-			passwordInput: e.target.value
-		});
-	}
-
-	register() {
-		firebase.auth().createUserWithEmailAndPassword(this.emailInput, this.passwordInput).then(function (){
-			function writeUserData(UserId, name, email, password) {
-				firebase.database().ref('users/' + userId).set({
-					username: name,
-					email: email,
-					password: password
-				});
-			}
-			let user = firebase.auth().currentUser;
-			writeUserData(user.uid, this.userInput, this.emailInput, this.passwordInput);
+	register(email, user, password) {
+		firebase.auth().createUserWithEmailAndPassword(email, password).then( (res) => {
+			firebase.database().ref('users/' + res.user.uid).set({
+				user: user,
+				email: email,
+				password: password
+			});
 		});
 	}
 
@@ -47,20 +34,17 @@ export class Register extends React.Component {
 				<Text style={styles.logo}>Registro</Text>
 				<TextInput style={styles.input}
 					placeholder = "email"
-					onChange={this.infoSend} 
-					value={this.state.emailInput}
+					onChangeText={(email) => this.setState({email})} 
 				/>
 				<TextInput style={styles.input}
 					placeholder = "usuário"
-					onChange={this.infoSend} 
-					value={this.state.userInput}
+					onChangeText={(user) => this.setState({user})} 
 				/>
 				<TextInput style={styles.input}
 					placeholder = "senha"
-					onChange={this.infoSend} 
-					value={this.state.passwordInput}
+					onChangeText={(password) => this.setState({password})} 
 				/>
-				<TouchableOpacity style={styles.button} onPress={this.register}>
+				<TouchableOpacity style={styles.button} onPress={() => this.register(this.state.email, this.state.user, this.state.password)}>
 					<Text style={styles.text}>Cadastre-se</Text>
 				</TouchableOpacity>
 				<TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>

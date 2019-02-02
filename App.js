@@ -8,7 +8,7 @@ import { Register } from './components/Register';
 
 //Inicialização do Firebase
 const firebaseConfig = {
-	
+	apiKey: "AIzaSyD20OA5Pm6XJ5jVdbdS94-m5Dq-OVKApng",
 	authDomain: "projeto-de-ferias-2k19-1.firebaseapp.com",
 	databaseURL: "https://projeto-de-ferias-2k19-1.firebaseio.com",
 	storageBucket: "projeto-de-ferias-2k19-1.appspot.com",
