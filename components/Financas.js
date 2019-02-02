@@ -1,12 +1,12 @@
 import React from 'react';
-import {  StyleSheet, 
-					Text, 
-					View, 
-					TextInput, 
-					TouchableOpacity, 
-					TouchableHighlight,
-					StatusBar
-				} from 'react-native';
+import {	StyleSheet, 
+			Text, 
+			View, 
+			TextInput, 
+			TouchableOpacity, 
+			TouchableHighlight,
+			StatusBar
+		} from 'react-native';
 
 export class Financas extends React.Component {
 	render() {

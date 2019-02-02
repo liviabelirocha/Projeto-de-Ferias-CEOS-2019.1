@@ -1,5 +1,5 @@
 import React from 'react';
-import {  StyleSheet, 
+import {	StyleSheet, 
 					Text, 
 					View, 
 					TextInput,  
@@ -21,8 +21,8 @@ export class Home extends React.Component {
 				<TouchableOpacity style={styles.button}>
 					<Text style={styles.text}>LOGIN</Text>
 				</TouchableOpacity>
-				<TouchableOpacity>
-					<Text style={styles.text}>Não possui uma conta? Cadastre-se</Text>
+				<TouchableOpacity onPress={() => this.props.navigation.navigate('Cadastro')}>
+					<Text style={styles.text} >Não possui uma conta? Cadastre-se</Text>
 				</TouchableOpacity>
 			</View>
 		);
