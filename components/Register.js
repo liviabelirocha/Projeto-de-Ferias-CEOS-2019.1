@@ -13,18 +13,29 @@ export class Register extends React.Component {
 		super(props);
 		this.state = {
 			email: '',
-			user: '',
+			nome: '',
 			password: '',
 		};
 	}
 
-	register(email, user, password) {
+	register(email, nome, password) {
 		firebase.auth().createUserWithEmailAndPassword(email, password).then( (res) => {
 			firebase.database().ref('users/' + res.user.uid).set({
-				user: user,
+				nome: nome,
 				email: email,
-				password: password
+				password: password,
+				firstLogin: "false"
 			});
+		}).catch( (error) =>{
+			if (email == '' || password == '' || nome == '') {
+				alert('Preencha todos os campos');
+			} else if (error.code == 'auth/invalid-email') {
+				alert('Email inválido');
+			} else if (error.code == 'auth/weak-password') {
+				alert('Senha fraca. Insira mais de 6 caracteres');
+			} else if (error.code == 'auth/email-already-in-use') {
+				alert('Email já em uso');
+			}
 		});
 	}
 
@@ -37,14 +48,15 @@ export class Register extends React.Component {
 					onChangeText={(email) => this.setState({email})} 
 				/>
 				<TextInput style={styles.input}
-					placeholder = "usuário"
-					onChangeText={(user) => this.setState({user})} 
+					placeholder = "nome"
+					onChangeText={(nome) => this.setState({nome})} 
 				/>
 				<TextInput style={styles.input}
 					placeholder = "senha"
+					secureTextEntry={true}
 					onChangeText={(password) => this.setState({password})} 
 				/>
-				<TouchableOpacity style={styles.button} onPress={() => this.register(this.state.email, this.state.user, this.state.password)}>
+				<TouchableOpacity style={styles.button} onPress={() => this.register(this.state.email, this.state.nome, this.state.password)}>
 					<Text style={styles.text}>Cadastre-se</Text>
 				</TouchableOpacity>
 				<TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>

@@ -6,19 +6,57 @@ import {	StyleSheet,
 					TouchableOpacity, 
 					TouchableHighlight 
 				} from 'react-native';
+import * as firebase from 'firebase';
 
 export class Home extends React.Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			email: '',
+			password: ''
+		}
+	}
+
+	login(email, password) {
+		firebase.auth().signInWithEmailAndPassword(email, password).then( () =>{
+			let user = firebase.auth().currentUser;
+			//CORRIGIR
+			if (user.firstLogin === "false"){
+				firebase.database().ref('users/' + user.uid).update({
+					firstLogin: "true"
+				});
+				this.props.navigation.push('FirstLogin');
+			} else {
+				this.props.navigation.push('Financas');
+			}
+		}).catch( (error) =>{
+			if (email == '' || password == ''){
+				alert('Preencha todos os campos');
+			} else if (error.code == 'auth/invalid-email') {
+				alert('Email não válido');
+			} else if (error.code == 'auth/user-not-found') {
+				alert('Usuário não encontrado. Cheque o email ou crie uma conta.')
+			} else if (error.code == 'auth/wrong-password') {
+				alert('Senha inválida');
+			}
+		});
+	}
+
 	render() {
 		return (
 			<View style={styles.container}>
 				<Text style={styles.logo}>Logo Aqui</Text>
 				<TextInput style={styles.input}
-					placeholder = "usuário"
+					placeholder = "email"
+					onChangeText = {(email) => this.setState({email})} 
 				/>
 				<TextInput style={styles.input}
 					placeholder = "senha"
+					secureTextEntry={true}
+					onChangeText = {(password) => this.setState({password})}
 				/>
-				<TouchableOpacity style={styles.button}>
+				<TouchableOpacity style={styles.button} onPress={() => this.login(this.state.email, this.state.password)}>
 					<Text style={styles.text}>LOGIN</Text>
 				</TouchableOpacity>
 				<TouchableOpacity onPress={() => this.props.navigation.navigate('Cadastro')}>
