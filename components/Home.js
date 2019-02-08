@@ -21,15 +21,13 @@ export class Home extends React.Component {
 	login(email, password) {
 		firebase.auth().signInWithEmailAndPassword(email, password).then( () =>{
 			let user = firebase.auth().currentUser;
-			//CORRIGIR
-			if (user.firstLogin === "false"){
-				firebase.database().ref('users/' + user.uid).update({
-					firstLogin: "true"
-				});
-				this.props.navigation.push('FirstLogin');
-			} else {
-				this.props.navigation.push('Financas');
-			}
+			firebase.database().ref('users' + user.uid + 'salario').once("value", snapshot => {
+				if (snapshot.exists()) {
+					this.props.navigation.push('Financas');
+				} else {
+						this.props.navigation.push('FirstLogin');
+					}
+			});
 		}).catch( (error) =>{
 			if (email == '' || password == ''){
 				alert('Preencha todos os campos');

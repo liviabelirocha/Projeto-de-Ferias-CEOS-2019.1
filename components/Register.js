@@ -24,8 +24,8 @@ export class Register extends React.Component {
 				nome: nome,
 				email: email,
 				password: password,
-				firstLogin: "false"
 			});
+			this.props.navigation.push('FirstLogin');
 		}).catch( (error) =>{
 			if (email == '' || password == '' || nome == '') {
 				alert('Preencha todos os campos');

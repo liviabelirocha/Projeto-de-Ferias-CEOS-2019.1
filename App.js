@@ -10,7 +10,7 @@ import { InformationInput } from './components/InformationInput';
 
 //Inicialização do Firebase
 const firebaseConfig = {
-
+	
 	authDomain: "projeto-de-ferias-2k19-1.firebaseapp.com",
 	databaseURL: "https://projeto-de-ferias-2k19-1.firebaseio.com",
 	storageBucket: "projeto-de-ferias-2k19-1.appspot.com",
