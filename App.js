@@ -3,10 +3,10 @@ import { StyleSheet, Text, View } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import * as firebase from 'firebase';
 
-import { Home } from './components/Home';
-import { Financas } from './components/Financas';
-import { Register } from './components/Register';
-import { InformationInput } from './components/InformationInput';
+import { Home } from './src/components/Home';
+import { Financas } from './src/components/Financas';
+import { Register } from './src/components/Register';
+import { InformationInput } from './src/components/InformationInput';
 
 //Inicialização do Firebase
 const firebaseConfig = {
