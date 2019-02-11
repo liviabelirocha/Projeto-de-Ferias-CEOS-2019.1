@@ -4,12 +4,12 @@ import {
   Text
 } from 'react-native';
 
-const Financas = (props) => {
+const Ajustes = (props) => {
   return (
     <View>
-      <Text>FINANCAS</Text>
+      <Text>AJUSTES</Text>
     </View>
   )
 }
 
-export default Financas;
+export default Ajustes;

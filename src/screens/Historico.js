@@ -4,12 +4,12 @@ import {
   Text
 } from 'react-native';
 
-const Financas = (props) => {
+const Historico = (props) => {
   return (
     <View>
-      <Text>FINANCAS</Text>
+      <Text>HISTORICO</Text>
     </View>
   )
 }
 
-export default Financas;
+export default Historico;

@@ -4,12 +4,12 @@ import {
   Text
 } from 'react-native';
 
-const Financas = (props) => {
+const Logout = (props) => {
   return (
     <View>
-      <Text>FINANCAS</Text>
+      <Text>LOGOUT</Text>
     </View>
   )
 }
 
-export default Financas;
+export default Logout;
