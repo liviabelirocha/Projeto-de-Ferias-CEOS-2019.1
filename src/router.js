@@ -7,7 +7,6 @@ import Login from './screens/Login';
 import Register from './screens/Register';
 import Financas from './screens/Financas';
 
-
 export const createUserNavigator = () => createMaterialTopTabNavigator(
   {
     Financas: Financas
