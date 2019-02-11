@@ -1,15 +1,16 @@
 import React from 'react';
-import {	StyleSheet, 
-					Text, 
-					View, 
-					TextInput, 
-					TouchableOpacity, 
-					TouchableHighlight,
-					StatusBar
-				} from 'react-native';
+import {	
+  StyleSheet, 
+  Text, 
+  View, 
+  TextInput, 
+  TouchableOpacity, 
+  TouchableHighlight,
+  StatusBar
+} from 'react-native';
 import * as firebase from 'firebase';
 
-export class InformationInput extends React.Component {
+class InformationInput extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -87,3 +88,5 @@ const styles = StyleSheet.create({
 		marginBottom: 12,
 	}
 });
+
+export default InformationInput;

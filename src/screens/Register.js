@@ -1,13 +1,14 @@
 import React from 'react';
-import {	StyleSheet, 
-					Text, 
-					View, 
-					TextInput,  
-					TouchableOpacity
-				} from 'react-native';
+import {	
+  StyleSheet, 
+  Text, 
+  View, 
+  TextInput,  
+  TouchableOpacity
+} from 'react-native';
 import * as firebase from 'firebase';
 
-export class Register extends React.Component {
+class Register extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -108,3 +109,5 @@ const styles = StyleSheet.create({
 		fontSize: 15,
 	}
 });
+
+export default Register;

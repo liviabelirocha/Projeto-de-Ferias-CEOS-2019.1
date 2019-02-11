@@ -1,14 +1,15 @@
 import React from 'react';
-import {	StyleSheet, 
-			Text, 
-			View, 
-			TextInput, 
-			TouchableOpacity, 
-			TouchableHighlight,
-			StatusBar
-		} from 'react-native';
+import {	
+  StyleSheet, 
+  Text, 
+  View, 
+  TextInput, 
+  TouchableOpacity, 
+  TouchableHighlight,
+  StatusBar
+} from 'react-native';
 
-export class Financas extends React.Component {
+class Financas extends React.Component {
 	render() {
 		return (
 			<View style={styles.container}>
@@ -26,3 +27,5 @@ const styles = StyleSheet.create({
 		alignItems: 'center'
 	}
 });
+
+export default Financas;

@@ -1,14 +1,15 @@
 import React from 'react';
-import {	StyleSheet, 
-					Text, 
-					View, 
-					TextInput,  
-					TouchableOpacity, 
-					TouchableHighlight 
-				} from 'react-native';
+import {	
+  StyleSheet, 
+  Text, 
+  View, 
+  TextInput,  
+  TouchableOpacity, 
+  TouchableHighlight 
+} from 'react-native';
 import * as firebase from 'firebase';
 
-export class Home extends React.Component {
+class Login extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -18,7 +19,7 @@ export class Home extends React.Component {
 		}
 	}
 
-	login(email, password) {
+	doLogin(email, password) {
 		firebase.auth().signInWithEmailAndPassword(email, password).then( () =>{
 			let user = firebase.auth().currentUser;
 			firebase.database().ref('users' + user.uid + 'salario').once("value", snapshot => {
@@ -54,10 +55,10 @@ export class Home extends React.Component {
 					secureTextEntry={true}
 					onChangeText = {(password) => this.setState({password})}
 				/>
-				<TouchableOpacity style={styles.button} onPress={() => this.login(this.state.email, this.state.password)}>
+				<TouchableOpacity style={styles.button} onPress={() => this.doLogin(this.state.email, this.state.password)}>
 					<Text style={styles.text}>LOGIN</Text>
 				</TouchableOpacity>
-				<TouchableOpacity onPress={() => this.props.navigation.navigate('Cadastro')}>
+				<TouchableOpacity onPress={() => this.props.navigation.navigate('Register')}>
 					<Text style={styles.text} >Não possui uma conta? Cadastre-se</Text>
 				</TouchableOpacity>
 			</View>
@@ -105,3 +106,5 @@ const styles = StyleSheet.create({
 		fontSize: 15,
 	}
 });
+
+export default Login;
