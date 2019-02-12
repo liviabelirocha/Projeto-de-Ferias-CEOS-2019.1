@@ -3,11 +3,12 @@ import {
   View,
   Text
 } from 'react-native';
+import { commonStyles } from '../theme';
 
 const Financas = (props) => {
   return (
-    <View>
-      <Text>FINANCAS</Text>
+    <View style={commonStyles.container}>
+      <Text style={commonStyles.text}>FINANCAS</Text>
     </View>
   )
 }

@@ -3,11 +3,12 @@ import {
   View,
   Text
 } from 'react-native';
+import { commonStyles } from '../theme';
 
 const Historico = (props) => {
   return (
-    <View>
-      <Text>HISTORICO</Text>
+    <View style={commonStyles.container}>
+      <Text style={commonStyles.text}>HISTORICO</Text>
     </View>
   )
 }

@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { 
   createSwitchNavigator, 
   createMaterialTopTabNavigator 
@@ -12,27 +14,33 @@ import Historico from './screens/Historico';
 import Ajustes from './screens/Ajustes';
 import Logout from './screens/Logout';
 
+import Toolbar from './components/Toolbar';
+
 export const UserRoutes = {
   Financas: {
     screen: Financas,
-    title: 'Finanças'
+    title: 'Finanças',
+    icon: 'pie-chart'
   },
   Historico: {
     screen: Historico, 
-    title: 'Histórico'
+    title: 'Histórico',
+    icon: 'bar-chart-2'
   },
   Ajustes: {
     screen: Ajustes,
-    title: 'Ajustes'
+    title: 'Ajustes',
+    icon: 'dollar-sign'
   },
   Logout: {
     screen: Logout,
-    title: 'Logout'
+    title: 'Logout',
+    icon: 'log-out'
   }
 };
 
-const createUserNavigator = () => createMaterialTopTabNavigator(UserRoutes);
-
+const createUserNavigator = () => createMaterialTopTabNavigator(
+  UserRoutes, {tabBarComponent: props => <Toolbar {...props}/>});
 
 const createAuthNavigator = () => createSwitchNavigator(
   {

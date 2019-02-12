@@ -3,11 +3,12 @@ import {
   View,
   Text
 } from 'react-native';
+import { commonStyles } from '../theme';
 
 const Ajustes = (props) => {
   return (
-    <View>
-      <Text>AJUSTES</Text>
+    <View style={commonStyles.container}>
+      <Text style={commonStyles.text}>AJUSTES</Text>
     </View>
   )
 }
