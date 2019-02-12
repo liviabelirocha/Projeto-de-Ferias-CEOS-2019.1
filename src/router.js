@@ -6,6 +6,7 @@ import {
 import Login from './screens/Login';
 import Register from './screens/Register';
 
+import InformationInput from './screens/InformationInput';
 import Financas from './screens/Financas';
 import Historico from './screens/Historico';
 import Ajustes from './screens/Ajustes';
@@ -30,14 +31,25 @@ export const UserRoutes = {
   }
 };
 
-export const createUserNavigator = () => createMaterialTopTabNavigator(UserRoutes);
+const createUserNavigator = () => createMaterialTopTabNavigator(UserRoutes);
 
 
-export const createAuthNavigator = () => createSwitchNavigator(
+const createAuthNavigator = () => createSwitchNavigator(
   {
-    Login: Login,
+    Login: {screen: Login},
     Register: Register,
+    FirstLogin: InformationInput,
     User: createUserNavigator()
   },
-  {initialRouteName: 'User'}
+  {initialRouteName: 'Login'}
 );
+
+export const createRootNavigator = (signedIn = false) => {
+  return createSwitchNavigator(
+    {
+      SignedIn: {screen: createUserNavigator()},
+      SignedOut: {screen: createAuthNavigator()}
+    },
+    {initialRouteName: signedIn ? 'SignedIn': 'SignedOut'}
+  )
+}
