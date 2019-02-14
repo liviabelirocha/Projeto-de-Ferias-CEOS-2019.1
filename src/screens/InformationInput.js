@@ -1,44 +1,59 @@
 import React from 'react';
-import {	
-  StyleSheet, 
+import {
+	StyleSheet, 
   Text, 
   View, 
-  TextInput, 
+  TextInput,  
   TouchableOpacity, 
-  TouchableHighlight,
-  StatusBar
+	TouchableHighlight,
+	Modal,
+	Switch
 } from 'react-native';
 import * as firebase from 'firebase';
-import { commonStyles } from '../theme';
+import { register } from '../auth';
+import { commonStyles, modal, InfoInput } from '../theme'
 
 class InformationInput extends React.Component {
 
-  state = {
-    salario: '',
-    user: firebase.auth().currentUser
-  };
+	state = {
+			salario: '',
+			modalVisible: false,
+			poupanca: false
+	}
 
-	sendInitialInfo(salario) {
-		let user = firebase.auth().currentUser;
-		firebase.database().ref('users/' + user.uid).update({
-			salario: salario,
-		});
-		this.props.navigation.navigate('User');
+	setModalVisible = (visible) => {
+		this.setState({modalVisible: visible});
 	}
 
   render() {
+
+		const { navigation } = this.props;
+		const nome = navigation.getParam('nome', '');
+		const email = navigation.getParam('email', '');
+		const password = navigation.getParam('password', '');
+		
     return (
-      <View style={commonStyles.container}>
-        <Text style={styles.logo}>Bem vindo, {this.state.user.email}, insira suas informações abaixo: </Text>
-				<Text style={commonStyles.text}>SALÁRIO</Text>
-				<TextInput style={commonStyles.input} 
+      <View style={InfoInput.container}>
+
+        <Text style={InfoInput.logo}>Quase lá! Insira suas informações abaixo: </Text>
+
+				<Text style={InfoInput.text1}>SALÁRIO</Text>
+				<TextInput style={InfoInput.input} 
 					placeholder="$1000,00"
 					keyboardType = 'numeric'
 					onChangeText={(salario) => this.setState({salario})}
 				/>
-				<TouchableOpacity style={commonStyles.button} onPress={() => this.sendInitialInfo(this.state.salario)}>
-					<Text style={commonStyles.text}>GO</Text>
+
+				<TouchableOpacity style={InfoInput.add} >
+					<Text style={InfoInput.text2}>+</Text>
 				</TouchableOpacity>
+
+				<TouchableOpacity style={InfoInput.go} onPress={() => {
+					register(email, nome, password, this.state.salario, this.props.navigation)
+					}}>
+				<Text style={InfoInput.text2}>Cadastre-se</Text>
+				</TouchableOpacity>
+
       </View>
     );
   }

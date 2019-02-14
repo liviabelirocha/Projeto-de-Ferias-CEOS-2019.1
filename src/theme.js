@@ -53,3 +53,68 @@ export const commonStyles = StyleSheet.create({
 
   selectedIcon: {...this.icon, color: 'white'}
 });
+
+export const InfoInput = StyleSheet.create({
+  container: {
+		flex: 1,
+		backgroundColor: colors.primary,
+  },
+  
+  logo: {
+		color: 'white',
+		fontSize: 20,
+		textAlign: 'center',
+		marginTop: 32,
+		marginBottom: 32,
+  },
+  
+  text1: {
+		color: 'white',
+		fontSize: 15,
+		paddingLeft: 12,
+		marginBottom: 12,
+  },
+  
+  input: {
+		backgroundColor: colors.primaryLight,
+		paddingLeft: 12,
+		paddingRight: 12,
+		width: 140, 
+		height: 28,
+		marginLeft: 12,
+		marginBottom: 12,
+    color: 'white',
+    borderBottomWidth: 1,
+    borderBottomColor: colors.accent,
+  },
+  
+  add: {
+		backgroundColor: 'white',
+		width: 64,
+		height: 64,
+		borderRadius: 100,
+		position: 'absolute',
+		bottom: 12,
+		left: 12,
+		paddingTop: 12,
+		paddingLeft: 24,
+  },
+  
+  go: {
+		backgroundColor: 'white',
+		width: 220,
+		height: 64,
+		alignItems: 'center',
+		position: 'absolute',
+		bottom: 12,
+		right: 12,
+		borderRadius: 100,
+		paddingTop: 12,
+  },
+
+  text2: {
+		color: 'black',
+		fontSize: 24,
+	},
+  
+});

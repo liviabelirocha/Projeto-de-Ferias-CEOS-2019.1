@@ -6,7 +6,7 @@ import Loading from './src/screens/Loading';
 
 //Inicialização do Firebase
 const firebaseConfig = {
-	apiKey: "CHAVEDEAPI",
+	apiKey: "AIzaSyD20OA5Pm6XJ5jVdbdS94-m5Dq-OVKApng",
 	authDomain: "projeto-de-ferias-2k19-1.firebaseapp.com",
 	databaseURL: "https://projeto-de-ferias-2k19-1.firebaseio.com",
 	storageBucket: "projeto-de-ferias-2k19-1.appspot.com",
@@ -24,6 +24,7 @@ class App extends React.Component {
   componentWillMount() {
     firebase.auth().onAuthStateChanged((user) => {
       this.setState({ user: user, checkResult: true });
+      console.log(user ? "nao nulo" : "nulo");
     });
   }
   render() {

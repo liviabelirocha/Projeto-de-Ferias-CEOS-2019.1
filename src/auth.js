@@ -6,16 +6,17 @@ export const login = (email, password, navigator) => {
   .catch(e => validate(e, navigator));
 }
 
-export const register = (email, nome, password, navigator) => {
+export const register = (email, nome, password, salario, navigator) => {
   firebase.auth().createUserWithEmailAndPassword(email, password).then((res) => {
     firebase.database().ref('users/' + res.user.uid).set({
       nome: nome,
       email: email,
+      salario: salario
     }).then(user => {
       user.updateProfile({
         displayName: nome,
         photoURL: 'https://via.placeholder.com/300'
-      })
+      });
     });
   }).catch((e) => validate(e, navigator));
 }
