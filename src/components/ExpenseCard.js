@@ -4,7 +4,8 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Dimensions
+  Dimensions,
+  Animated
 } from 'react-native';
 import { colors } from '../theme';
 import Icon from 'react-native-vector-icons/Feather';
@@ -12,18 +13,34 @@ import Icon from 'react-native-vector-icons/Feather';
 class ExpenseCard extends React.Component {
 
   state = {
-    expanded: false
+    expanded: false,
+    cardHeight: new Animated.Value(56)
+  }
+
+  setMaxHeight = (event) => {
+    this.setState({
+      maxHeight: event.nativeEvent.layout.height
+    });
+  }
+
+  toggleCard = () => {
+    let expanded = this.state.expanded;
+    this.setState({
+      expanded: !expanded
+    });
+    Animated.spring(
+      this.state.cardHeight, 
+      {toValue: expanded ? 56 : this.state.maxHeight + 56}
+    ).start();
   }
 
   render() {
     let expanded = this.state.expanded;
     return (
-      <View style={styles.card}>
+      <Animated.View style={{...styles.card, height: this.state.cardHeight}}>
         <TouchableOpacity 
           style={styles.tile}
-          onPress={() => {
-            this.setState({expanded: !this.state.expanded})
-          }}>
+          onPress={this.toggleCard}>
           <View style={{
             backgroundColor: colors[this.props.color],
             ...styles.indicator
@@ -41,14 +58,10 @@ class ExpenseCard extends React.Component {
           height: 1,
           backgroundColor: colors[this.props.color]
         }}/>
-        {expanded ?
-        <View style={{padding: 12}}>
+        <View style={{padding: 12}} onLayout={this.setMaxHeight}>
           <Text style={styles.text}>{this.props.content}</Text>
         </View>
-          : 
-        null}
-
-      </View>
+      </Animated.View>
     );
   }
 }
@@ -58,7 +71,8 @@ const styles = StyleSheet.create({
   card: {
     width: Dimensions.get('window').width - 32,
     marginBottom: 8,
-    backgroundColor: colors.primaryLight
+    backgroundColor: colors.primaryLight,
+    overflow: 'hidden'
   },
 
   tile: {
