@@ -6,12 +6,13 @@ export const login = (email, password, navigator) => {
   .catch(e => validate(e, navigator));
 }
 
-export const register = (email, nome, password, salario, navigator) => {
+export const register = (email, nome, password, salario, poupanca, navigator) => {
   firebase.auth().createUserWithEmailAndPassword(email, password).then((res) => {
     firebase.database().ref('users/' + res.user.uid).set({
       nome: nome,
       email: email,
-      salario: salario
+      salario: salario,
+      poupanca: poupanca
     }).then(user => {
       user.updateProfile({
         displayName: nome,
@@ -49,7 +50,7 @@ const validate = (error, navigator) => {
       Alert.alert('Email em uso', 
       'Escolha um email válido ou logue em sua conta.', [
         {text: 'Logar', onPress: () => navigator.navigate('Login')},
-        {text: 'OK', onPress: () => {}},
+        {text: 'OK', onPress: () => {navigator.navigate('Register')}},
       ]);
       break;
     case 'auth/internal-error':

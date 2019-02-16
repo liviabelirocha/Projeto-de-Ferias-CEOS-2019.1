@@ -5,24 +5,22 @@ import {
   View, 
   TextInput,  
   TouchableOpacity, 
-	TouchableHighlight,
-	Modal,
-	Switch
+	CheckBox,
+	Alert
 } from 'react-native';
 import * as firebase from 'firebase';
 import { register } from '../auth';
-import { commonStyles, modal, InfoInput } from '../theme'
+import { commonStyles } from '../theme'
 
 class InformationInput extends React.Component {
 
 	state = {
 			salario: '',
-			modalVisible: false,
 			poupanca: false
 	}
 
-	setModalVisible = (visible) => {
-		this.setState({modalVisible: visible});
+	toggleCheckBox = () => {
+		this.setState({ poupanca: !this.state.poupanca });
 	}
 
   render() {
@@ -31,30 +29,32 @@ class InformationInput extends React.Component {
 		const nome = navigation.getParam('nome', '');
 		const email = navigation.getParam('email', '');
 		const password = navigation.getParam('password', '');
-		
+
     return (
-      <View style={InfoInput.container}>
+      <View style={commonStyles.container}>
 
-        <Text style={InfoInput.logo}>Quase lá! Insira suas informações abaixo: </Text>
+				<Text style={styles.logo}>Quase lá! Insira algumas informações abaixo: </Text>
 
-				<Text style={InfoInput.text1}>SALÁRIO</Text>
-				<TextInput style={InfoInput.input} 
+				<Text style={styles.text}>SALÁRIO</Text>
+				<TextInput style={commonStyles.input} 
 					placeholder="$1000,00"
 					keyboardType = 'numeric'
-					onChangeText={(salario) => this.setState({salario})}
-				/>
+					onChangeText={(salario) => this.setState({salario})} />
 
-				<TouchableOpacity style={InfoInput.add} >
-					<Text style={InfoInput.text2}>+</Text>
+				<Text style={styles.text}>POUPANÇA</Text>
+				<Text style={commonStyles.text}>A poupança separa 10% do seu salário todo mês</Text>
+
+				<CheckBox value={this.state.poupanca} onChange={() => this.toggleCheckBox()} style={styles.CheckBox}/>
+
+				<TouchableOpacity style={commonStyles.button} onPress={() => {
+					if(this.state.salario == '') {
+						Alert.alert('Campo não preenchido', 'Por favor, preencha todos os campos');
+					} else {
+						register(email, nome, password, this.state.salario, this.state.poupanca, this.props.navigation)}}
+					}>
+					<Text style={commonStyles.text}>Cadastre-se</Text>
 				</TouchableOpacity>
-
-				<TouchableOpacity style={InfoInput.go} onPress={() => {
-					register(email, nome, password, this.state.salario, this.props.navigation)
-					}}>
-				<Text style={InfoInput.text2}>Cadastre-se</Text>
-				</TouchableOpacity>
-
-      </View>
+			</View>
     );
   }
 }
@@ -63,9 +63,20 @@ const styles = StyleSheet.create({
 	logo: {
 		color: 'white',
 		fontSize: 20,
-		textAlign: 'center',
 		marginTop: 32,
 		marginBottom: 32,
+	},
+
+	text: {
+		marginBottom: 10,
+		fontSize: 20,
+		color: 'white',
+		marginTop: 20
+	},
+
+	CheckBox: {
+		marginTop: 10,
+		marginBottom: 45
 	}
 });
 
