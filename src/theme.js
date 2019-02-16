@@ -2,9 +2,14 @@ import { StyleSheet } from 'react-native';
 
 export const colors = {
   primary: "#363640",
-  primaryDark: "2b2b32",
+  primaryDark: "#2B2B32",
   primaryLight: "#454650",
-  accent: "rgba(255, 255, 255, 0.6)"
+  accent: "rgba(255, 255, 255, 0.6)",
+
+  yellow: "#FFCF44",
+  lightGreen: "#1EB980",
+  green: "#045D56",
+  blue: "#72DEFF"
 };
 
 export const commonStyles = StyleSheet.create({
