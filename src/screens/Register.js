@@ -29,15 +29,17 @@ class Register extends React.Component {
 
 				<Text style={styles.logo}>Registro</Text>
 				<TextInput style={commonStyles.input}
-					placeholder = "email"
+          placeholder='email'
+          keyboardType='email-address'
+          autoCapitalize='none'
 					onChangeText={(email) => this.setState({email})} 
 				/>
 				<TextInput style={commonStyles.input}
-					placeholder = "nome"
+					placeholder='nome'
 					onChangeText={(nome) => this.setState({nome})} 
 				/>
 				<TextInput style={commonStyles.input}
-					placeholder = "senha"
+					placeholder='senha'
 					secureTextEntry={true}
 					onChangeText={(password) => this.setState({password})} 
 				/>
@@ -55,7 +57,7 @@ class Register extends React.Component {
 							)
 						}
 					}}>
-					<Text style={commonStyles.text}>Cadastre-se</Text>
+					<Text style={commonStyles.text}>CADASTRO</Text>
 				</TouchableOpacity>
 
 				<TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>

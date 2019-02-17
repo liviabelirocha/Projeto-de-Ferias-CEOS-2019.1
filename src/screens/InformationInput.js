@@ -31,28 +31,30 @@ class InformationInput extends React.Component {
 		const password = navigation.getParam('password', '');
 
     return (
-      <View style={commonStyles.container}>
+      <View style={[commonStyles.container, {padding: 16}]}>
 
 				<Text style={styles.logo}>Quase lá! Insira algumas informações abaixo: </Text>
 
-				<Text style={styles.text}>SALÁRIO</Text>
+				<Text style={commonStyles.title}>SALÁRIO</Text>
 				<TextInput style={commonStyles.input} 
 					placeholder="$1000,00"
 					keyboardType = 'numeric'
 					onChangeText={(salario) => this.setState({salario})} />
 
-				<Text style={styles.text}>POUPANÇA</Text>
-				<Text style={commonStyles.text}>A poupança separa 10% do seu salário todo mês</Text>
-
-				<CheckBox value={this.state.poupanca} onChange={() => this.toggleCheckBox()} style={styles.CheckBox}/>
+				<Text style={commonStyles.title}>POUPANÇA</Text>
+				<Text style={commonStyles.text}>A poupança separa 10% do seu salário todo mês.</Text>
+        <View style={{flexDirection: 'row', alignItems: 'center', margin: 8}}>
+          <CheckBox value={this.state.poupanca} onChange={() => this.toggleCheckBox()}/>
+          <Text style={commonStyles.onSurfaceText}>Desejo ativar a poupança para minha conta.</Text>
+        </View>
 
 				<TouchableOpacity style={commonStyles.button} onPress={() => {
 					if(this.state.salario == '') {
-						Alert.alert('Campo não preenchido', 'Por favor, preencha todos os campos');
+						Alert.alert('Campo(s) não preenchido(s)', 'Por favor, preencha todos os campos');
 					} else {
 						register(email, nome, password, this.state.salario, this.state.poupanca, this.props.navigation)}}
 					}>
-					<Text style={commonStyles.text}>Cadastre-se</Text>
+					<Text style={commonStyles.text}>FINALIZAR</Text>
 				</TouchableOpacity>
 			</View>
     );
@@ -73,11 +75,6 @@ const styles = StyleSheet.create({
 		color: 'white',
 		marginTop: 20
 	},
-
-	CheckBox: {
-		marginTop: 10,
-		marginBottom: 45
-	}
 });
 
 export default InformationInput;

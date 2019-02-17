@@ -12,6 +12,11 @@ export const colors = {
   blue: "#72DEFF"
 };
 
+const textPadding = 12;
+const padding = 16;
+const margin = 8;
+const iconSize = 24;
+
 export const commonStyles = StyleSheet.create({
   container: {
 		flex: 1,
@@ -22,21 +27,23 @@ export const commonStyles = StyleSheet.create({
   
 	input: {
 		backgroundColor: colors.primaryLight,
-		paddingLeft: 12,
-    paddingRight: 12,
-    marginBottom: 8,
+		paddingLeft: textPadding,
+    paddingRight: textPadding,
+    marginBottom: margin,
 		width: 280, 
 		height: 56,
     borderBottomWidth: 1,
     borderBottomColor: colors.accent,
-    color: 'white'
+    color: '#fff',
+    fontSize: 15,
+    fontFamily: 'sans-serif-light'
 	},
 
 	button: {
 		backgroundColor: colors.primaryLight,
-		paddingLeft: 12,
-		paddingRight: 12,
-    marginBottom: 8,
+		paddingLeft: textPadding,
+		paddingRight: textPadding,
+    marginBottom: margin,
 		width: 280,
 		height: 56,
     alignItems: 'center',
@@ -44,18 +51,31 @@ export const commonStyles = StyleSheet.create({
   },
 
   text: {
-		color: 'white',
-		fontSize: 15,
+		color: '#fff',
+    fontSize: 15,
+    fontFamily: 'sans-serif-light',
+    letterSpacing: 1,
   },
   
-  onSurfaceText: {...this.text, color: colors.accent},
-
-  icon: {
-    width: 24,
-    height: 24,
-    color: colors.accent
+  onSurfaceText: {
+    color: colors.accent,
+    fontSize: 15,
+    fontFamily: 'sans-serif-light',
+    letterSpacing: 1,
   },
 
-  selectedIcon: {...this.icon, color: 'white'}
-});
+  title: {
+    color: '#fff',
+    fontSize: 20,
+    fontWeight: 'bold',
+    fontFamily: 'sans-serif-thin',
+    letterSpacing: 2,
+    marginBottom: margin
+  },
 
+  icon: {
+    width: iconSize,
+    height: iconSize,
+    color: colors.accent
+  }
+});

@@ -25,12 +25,12 @@ export const UserRoutes = {
   Historico: {
     screen: Historico, 
     title: 'Histórico',
-    icon: 'bar-chart-2'
+    icon: 'clock'
   },
   Ajustes: {
     screen: Ajustes,
     title: 'Ajustes',
-    icon: 'dollar-sign'
+    icon: 'settings'
   },
   Logout: {
     screen: Logout,

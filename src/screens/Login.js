@@ -21,11 +21,13 @@ class Login extends React.Component {
 			<View style={commonStyles.container}>
 				<Text style={styles.logo}>Logo Aqui</Text>
 				<TextInput style={commonStyles.input}
-					placeholder = "email"
+          placeholder='email'
+          keyboardType='email-address'
+          autoCapitalize='none'
 					onChangeText = {(email) => this.setState({email})} 
 				/>
 				<TextInput style={commonStyles.input}
-					placeholder = "senha"
+					placeholder ='senha'
 					secureTextEntry={true}
 					onChangeText = {(password) => this.setState({password})}
 				/>

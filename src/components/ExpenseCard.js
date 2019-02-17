@@ -44,7 +44,7 @@ class ExpenseCard extends React.Component {
           <View style={{
             backgroundColor: colors[this.props.color],
             ...styles.indicator
-          }}></View>
+          }}/>
           <Text style={styles.text}>{this.props.title.toUpperCase()}</Text>
           <Text style={{...styles.text, marginLeft: 'auto'}}>R$ {this.props.value}</Text>
             <Icon
