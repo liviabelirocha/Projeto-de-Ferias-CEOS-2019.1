@@ -8,11 +8,13 @@ export const login = (email, password, navigator) => {
 
 export const register = (email, nome, password, salario, poupanca, navigator) => {
   firebase.auth().createUserWithEmailAndPassword(email, password).then(res => {
-    firebase.database().ref('users/' + res.user.uid).set({
+    user = firebase.auth().currentUser;
+    firebase.database().ref('users/' + user.uid).set({
       nome: nome,
       email: email,
-      salario: salario,
-      poupanca: poupanca
+      salario: parseInt(salario),
+      poupanca: poupanca,
+      photoURL: 'https://i.imgur.com/dX7ZWmB.png'
     })
   }).catch((e) => validate(e, navigator));
 }

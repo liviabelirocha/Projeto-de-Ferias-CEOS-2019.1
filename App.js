@@ -1,7 +1,7 @@
 import React from 'react';
 import * as firebase from 'firebase';
 import { createAppContainer } from 'react-navigation';
-import { createRootNavigator } from './src/router';
+import createRootNavigator from './src/navigator';
 import Loading from './src/screens/Loading';
 
 //Inicialização do Firebase
@@ -16,16 +16,32 @@ firebase.initializeApp(firebaseConfig);
 
 class App extends React.Component {
 
+  listener = null;
+
   state = {
     user: null,
     checkResult: false
   }
 
   componentWillMount() {
-    firebase.auth().onAuthStateChanged((user) => {
-      this.setState({ user: user, checkResult: true });
+    this.listener = firebase.auth().onAuthStateChanged(user => {
+      if(user) {
+        const userId = firebase.auth().currentUser.uid;
+        firebase.database().ref('users/' + userId).once('value').then(snapshot => {
+          this.setState({user: {...snapshot.val()}, checkResult: true})
+        });
+      } else {
+        this.setState({ user: user, checkResult: true });
+      }
     });
   }
+
+  componentWillUnmount() {
+    if (this.listener) {
+      this.listener();
+    }
+  }
+
   render() {
     const { user, checkResult } = this.state;
     if(!checkResult) return <Loading/>

@@ -7,7 +7,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { colors } from '../theme';
-import { UserRoutes } from '../router';
+import getUserRoutes from '../router';
 import Icon from 'react-native-vector-icons/Feather';
 
 class Toolbar extends React.Component {
@@ -15,6 +15,7 @@ class Toolbar extends React.Component {
   getNavigationTabs() {
     const { navigation } = this.props;
     const { routes, index } = navigation.state;
+    const UserRoutes = getUserRoutes(null);
 
     let navigationTabs = [];
 

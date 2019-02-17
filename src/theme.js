@@ -22,7 +22,8 @@ export const commonStyles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: colors.primary,
 		alignItems: 'center',
-		justifyContent: 'center',
+    justifyContent: 'center',
+    padding: padding
   },
   
 	input: {
@@ -62,6 +63,7 @@ export const commonStyles = StyleSheet.create({
     fontSize: 15,
     fontFamily: 'sans-serif-light',
     letterSpacing: 1,
+    textAlign: 'center'
   },
 
   title: {
