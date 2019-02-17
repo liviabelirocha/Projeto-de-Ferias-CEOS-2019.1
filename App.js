@@ -29,7 +29,7 @@ class App extends React.Component {
         const userId = firebase.auth().currentUser.uid;
         const userRef = firebase.database().ref('users/' + userId);
         userRef.on('value', snapshot => {
-          this.setState({user: {...snapshot.val()}, checkResult: true})
+          this.setState({user: {uid: user.uid, ...snapshot.val()}, checkResult: true})
         });
       } else {
         this.setState({ user: user, checkResult: true });

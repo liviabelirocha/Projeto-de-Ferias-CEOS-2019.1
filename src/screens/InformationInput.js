@@ -8,15 +8,14 @@ import {
 	CheckBox,
 	Alert
 } from 'react-native';
-import * as firebase from 'firebase';
 import { register } from '../auth';
 import { commonStyles } from '../theme'
 
 class InformationInput extends React.Component {
 
 	state = {
-			salario: '',
-			poupanca: false
+    salario: '',
+    poupanca: false
 	}
 
 	toggleCheckBox = () => {
@@ -39,7 +38,8 @@ class InformationInput extends React.Component {
 				<TextInput style={commonStyles.input} 
 					placeholder="$1000,00"
 					keyboardType = 'numeric'
-					onChangeText={(salario) => this.setState({salario})} />
+					onChangeText={(salario) => this.setState({salario})}
+        />
 
 				<Text style={commonStyles.title}>POUPANÇA</Text>
 				<Text style={commonStyles.text}>A poupança separa 10% do seu salário todo mês.</Text>
