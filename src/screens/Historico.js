@@ -6,9 +6,24 @@ import {
 import { commonStyles } from '../theme';
 
 const Historico = (props) => {
+
+  user = props.user;
+
+  historico = () => {
+    if(user.gastos) {
+
+    } else {
+      return (
+        <View>
+          <Text style={commonStyles.text}>Não há nenhum gasto cadastrado.</Text>
+        </View>
+      )
+    }
+  }
+
   return (
     <View style={commonStyles.container}>
-      <Text style={commonStyles.text}>HISTORICO</Text>
+      {historico()}
     </View>
   )
 }

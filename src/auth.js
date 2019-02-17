@@ -12,9 +12,15 @@ export const register = (email, nome, password, salario, poupanca, navigator) =>
     firebase.database().ref('users/' + user.uid).set({
       nome: nome,
       email: email,
+      photoURL: 'https://i.imgur.com/dX7ZWmB.png',
       salario: parseInt(salario),
       poupanca: poupanca,
-      photoURL: 'https://i.imgur.com/dX7ZWmB.png'
+      gastos: {
+        casa: [],
+        entretenimento: [],
+        compras: [],
+        outros: []
+      }
     })
   }).catch((e) => validate(e, navigator));
 }
