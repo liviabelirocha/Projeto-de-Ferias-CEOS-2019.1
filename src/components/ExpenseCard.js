@@ -42,7 +42,7 @@ class ExpenseCard extends React.Component {
           style={styles.tile}
           onPress={this.toggleCard}>
           <View style={{
-            backgroundColor: colors[this.props.color],
+            backgroundColor: this.props.color,
             ...styles.indicator
           }}/>
           <Text style={styles.text}>{this.props.title.toUpperCase()}</Text>
@@ -56,7 +56,7 @@ class ExpenseCard extends React.Component {
         </TouchableOpacity>
         <View style={{
           height: 1,
-          backgroundColor: colors[this.props.color]
+          backgroundColor: this.props.color
         }}/>
         <View style={{padding: 12}} onLayout={this.setMaxHeight}>
           <Text style={styles.text}>{this.props.content}</Text>

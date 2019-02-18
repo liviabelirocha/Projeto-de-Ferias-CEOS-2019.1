@@ -15,12 +15,7 @@ export const register = (email, nome, password, salario, poupanca, navigator) =>
       photoURL: 'https://i.imgur.com/dX7ZWmB.png',
       salario: parseInt(salario),
       poupanca: poupanca,
-      gastos: {
-        casa: [],
-        entretenimento: [],
-        compras: [],
-        outros: []
-      }
+      gastos: {}
     })
   }).catch((e) => validate(e, navigator));
 }

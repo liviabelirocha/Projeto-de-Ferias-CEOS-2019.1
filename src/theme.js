@@ -6,10 +6,12 @@ export const colors = {
   primaryLight: "#454650",
   accent: "rgba(255, 255, 255, 0.6)",
 
-  yellow: "#FFCF44",
   lightGreen: "#1EB980",
   green: "#045D56",
-  blue: "#72DEFF"
+  yellow: "#FFCF44",
+  blue: "#72DEFF",
+  purple: "#B15DFF",
+  orange: "#FF6859",
 };
 
 const textPadding = 12;
