@@ -20,16 +20,16 @@ class Ajustes extends React.Component {
 
   state = {
     uploading: false,
-    salario: user.salario.toString(),
-    poupanca: user.poupanca,
+    salario: this.user.salario.toString(),
+    poupanca: this.user.poupanca,
     imageURI: null,
-    photoURL: user.photoURL
+    photoURL: this.user.photoURL
   }
 
   updateUserData = async() => {
     const state = {...this.state};
-    if(user.salario.toString() === state.salario && 
-    user.poupanca === state.poupanca && 
+    if(this.user.salario.toString() === state.salario && 
+    this.user.poupanca === state.poupanca && 
     state.imageURI === null) return;
     this.setState({uploading: true});
     if(state.imageURI) {
@@ -47,12 +47,12 @@ class Ajustes extends React.Component {
         xhr.send(null);
       });
 
-      const storageRef = firebase.storage().ref().child(user.uid);
+      const storageRef = firebase.storage().ref().child(this.user.uid);
       const snapshot = await storageRef.put(blob);
       const photoURL = await snapshot.ref.getDownloadURL();
       await this.setState({photoURL: photoURL})
     }
-    firebase.database().ref('users/' + user.uid).update({
+    firebase.database().ref('users/' + this.user.uid).update({
       salario: parseInt(state.salario),
       poupanca: state.poupanca,
       photoURL: this.state.photoURL
@@ -83,7 +83,7 @@ class Ajustes extends React.Component {
           onPress={this.pickImage}>
           <Image 
             style={styles.picture} 
-            source={{uri: this.state.imageURI || user.photoURL}}
+            source={{uri: this.state.imageURI || this.user.photoURL}}
           />
           <View style={styles.overlay}>
             <Icon 
