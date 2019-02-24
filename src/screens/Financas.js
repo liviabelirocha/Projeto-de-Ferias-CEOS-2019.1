@@ -9,7 +9,7 @@ import { commonStyles, colors } from '../theme';
 import Pie from 'react-native-pie';
 import FAB from '../components/FAB';
 import ExpenseCard from '../components/ExpenseCard';
-import { categoryData } from '../components/Categorias';
+import { categoryData } from '../components/CategoryBtn';
 
 const processUserData = (user) => {
   let cards = [];
@@ -22,7 +22,7 @@ const processUserData = (user) => {
         value={custo}
         color={categoria.cor}
         title={categoria.nome}
-        content={compras ? compras + ' compra(s) nesta categoria.' : null }
+        content={compras ? compras + ' despesa(s) nesta categoria.' : null }
       />
     );
     total += custo;

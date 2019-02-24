@@ -4,10 +4,9 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Dimensions,
   Animated
 } from 'react-native';
-import { colors } from '../theme';
+import { colors, dimensions } from '../theme';
 import Icon from 'react-native-vector-icons/Feather';
 
 class ExpenseCard extends React.Component {
@@ -69,7 +68,7 @@ class ExpenseCard extends React.Component {
 const styles = StyleSheet.create({
 
   card: {
-    width: Dimensions.get('window').width - 32,
+    width: dimensions.width - 32,
     marginBottom: 8,
     backgroundColor: colors.primaryLight,
     overflow: 'hidden'

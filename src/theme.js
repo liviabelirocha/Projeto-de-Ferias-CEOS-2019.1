@@ -1,4 +1,7 @@
-import { StyleSheet } from 'react-native';
+import { 
+  StyleSheet,
+  Dimensions
+} from 'react-native';
 
 export const colors = {
   primary: "#363640",
@@ -13,6 +16,11 @@ export const colors = {
   purple: "#B15DFF",
   orange: "#FF6859",
 };
+
+export const dimensions = {
+  width: Dimensions.get('window').width,
+  height: Dimensions.get('window').height,
+}
 
 const textPadding = 12;
 const padding = 16;
