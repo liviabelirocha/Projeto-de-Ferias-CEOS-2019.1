@@ -34,21 +34,19 @@ const processUserData = (user) => {
     pushData(poupanca, {nome: 'poupança', cor: colors.lightGreen});
   }
   if(user.gastos) {
-    for (var i = 0; i < categoryData.length; i++) {
-      const categoria = categoryData[i]
-      if(user.gastos[categoria.nome]) {
-        let custo = 0;
-        let compras = 0;
-        user.gastos[categoria.nome].map(g => {
-          custo += g.valor;
-          compras += 1
-        });
-        pushData(custo, categoria, compras);
-      }
+    let custoPorCategoria = {casa: 0, lazer: 0, compras: 0, outro: 0};
+    let gastosPorCategoria = {casa: 0, lazer: 0, compras: 0, outro: 0};
+    for(var id in user.gastos) {
+      let despesa = user.gastos[id];
+      custoPorCategoria[despesa.categoria] += despesa.valor;
+      gastosPorCategoria[despesa.categoria] += 1;
+    }
+    for(var cat in custoPorCategoria) {
+      if(custoPorCategoria[cat] > 0) pushData(custoPorCategoria[cat], {nome: cat, ...categoryData[cat]}, gastosPorCategoria[cat]);
     }
   }
   pushData(user.salario - total, {nome: 'saldo', cor: colors.green});
-  return {cards, piedata};
+  return { cards, piedata };
 }
 
 const Financas = (props) => {

@@ -10,28 +10,24 @@ import {
 import Icon from 'react-native-vector-icons/Feather';
 import { colors } from '../theme';
 
-export const categoryData = [
-  {
-    nome: 'casa',
+export const categoryData = {
+  casa: {
     cor: colors.yellow,
     icon: 'home'
   },
-  {
-    nome: 'lazer',
+  lazer: {
     cor: colors.purple,
     icon: 'umbrella'
   },
-  {
-    nome: 'compras',
+  compras: {
     cor: colors.orange,
     icon: 'shopping-cart'
   },
-  {
-    nome: 'outro',
+  outro: {
     cor: colors.blue,
     icon: 'grid'
   },
-];
+};
 
 export class CategoryBtn extends React.Component {
 

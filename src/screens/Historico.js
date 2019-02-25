@@ -1,76 +1,91 @@
 import React from 'react';
 import {
+  LayoutAnimation,
   StyleSheet,
   View,
+  FlatList,
   Text
 } from 'react-native';
 import { commonStyles, colors, dimensions } from '../theme';
 import ExpenseCard from '../components/ExpenseCard';
 import { categoryData, CategoryBtn } from '../components/CategoryBtn';
 
-const Historico = (props) => {
+class Historico extends React.Component {
 
-  let user = props.user;
+  user = this.props.user;
 
-  cardList = () => {
-    let cards = []
-    if(user.gastos) {
-      for(var i = 0; i < categoryData.length; i++) {
-        if(user.gastos[categoryData[i].nome]) {
-          let cat = user.gastos[categoryData[i].nome];
-          cat.map(despesa => {
-            cards.push(
-              <ExpenseCard
-              key={despesa.data}
-              color={categoryData[i].cor}
-              title={despesa.titulo}
-              value={despesa.valor}
-              content={despesa.desc}
-              />
-            )
-          })
-        }
-      }
+  state = {
+    categorias: {
+      casa: true,
+      lazer: true,
+      compras: true,
+      outro: true
     }
-    return (
-      <View>
-        {cards}
-      </View>
-    )
+  }
+
+  componentWillUpdate() {
+    LayoutAnimation.easeInEaseOut();
+  }
+
+  switchCategory = (category) => {
+    let categorias = {...this.state.categorias};
+    categorias[category] = !categorias[category];
+    this.setState({categorias});
   }
 
   historico = () => {
-    if(user.gastos) {
+    if(this.user.gastos) {
+      let cards = []
+      if(this.user.gastos) {
+        for(var id in this.user.gastos) {
+          let despesa = this.user.gastos[id].categoria;
+          if (this.state.categorias[despesa]) cards.push({id: id, ...this.user.gastos[id]});
+        }
+      }
       return (
         <View>
           <View style={styles.categoryView}>
-            {categoryData.map(cat => {
+          {Object.keys(categoryData).map(e => {
+              let cat = categoryData[e];
               return <CategoryBtn 
-                key={cat.nome} 
+                key={cat.cor} 
                 icon={cat.icon} 
                 color={cat.cor} 
-                category={cat.nome.toUpperCase()}
-                onPress={() => {}}
+                category={e.toUpperCase()}
+                onPress={() => this.switchCategory(e)}
               />
             })}
           </View>
-          {cardList()}
+          <FlatList
+            data={cards.reverse()}
+            renderItem={
+              ({item}) =>
+              <ExpenseCard
+                key={item.id}
+                color={categoryData[item.categoria].cor}
+                title={item.titulo}
+                content={item.desc}
+                value={item.valor}
+              />}
+          />
         </View>
       )
     } else {
       return (
-        <View>
+        <View style={commonStyles.container}>
           <Text style={commonStyles.text}>Não há nenhum gasto cadastrado.</Text>
         </View>
       )
     }
   }
 
-  return (
-    <View style={{...commonStyles.container, justifyContent: 'flex-start'}}>
-      {historico()}
-    </View>
-  )
+  render() {
+    return (
+      <View style={{...commonStyles.container, justifyContent: 'flex-start'}}>
+        {this.historico()}
+      </View>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
