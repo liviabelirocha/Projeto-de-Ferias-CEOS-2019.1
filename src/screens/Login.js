@@ -19,7 +19,7 @@ class Login extends React.Component {
 	render() {
 		return (
 			<View style={commonStyles.container}>
-				<Text style={styles.logo}>Logo Aqui</Text>
+				<Text style={styles.logo}>J00J</Text>
 				<TextInput style={commonStyles.input}
           placeholder='email'
           keyboardType='email-address'

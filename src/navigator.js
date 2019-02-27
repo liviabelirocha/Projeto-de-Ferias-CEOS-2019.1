@@ -14,6 +14,8 @@ import Toolbar from './components/Toolbar';
 
 import getUserRoutes from './router';
 
+import Expenses from './components/Expenses';
+
 const createUserNavigator = (user) => createMaterialTopTabNavigator(
   getUserRoutes(user), {tabBarComponent: props => <Toolbar {...props}/>});
 
@@ -22,7 +24,8 @@ const createAuthNavigator = () => createSwitchNavigator(
     Login: {screen: Login},
     Register: Register,
     FirstLogin: InformationInput,
-    User: createUserNavigator()
+    User: createUserNavigator(),
+    Expenses: Expenses
   },
   {initialRouteName: 'Login'}
 );

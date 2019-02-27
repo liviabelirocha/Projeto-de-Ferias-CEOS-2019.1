@@ -2,7 +2,7 @@ import React from 'react';
 import {
   StyleSheet,
   View,
-  ScrollView
+  ScrollView,
 } from 'react-native';
 import * as firebase from 'firebase';
 import { commonStyles, colors } from '../theme';
