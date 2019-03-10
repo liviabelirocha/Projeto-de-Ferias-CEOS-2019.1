@@ -1,13 +1,15 @@
 import React from 'react';
 import {
-  LayoutAnimation,
   StyleSheet,
   View,
   FlatList,
-  Text
+  Text,
+  Animated,
+  Easing
 } from 'react-native';
 import { commonStyles, colors, dimensions } from '../theme';
 import ExpenseCard from '../components/ExpenseCard';
+import FAB from '../components/FAB';
 import { categoryData, CategoryBtn } from '../components/CategoryBtn';
 
 class Historico extends React.Component {
@@ -15,6 +17,8 @@ class Historico extends React.Component {
   user = this.props.user;
 
   state = {
+    filterOn: false,
+    filterHeight: new Animated.Value(0),
     categorias: {
       casa: true,
       lazer: true,
@@ -23,8 +27,16 @@ class Historico extends React.Component {
     }
   }
 
-  componentWillUpdate() {
-    LayoutAnimation.easeInEaseOut();
+  toggleFilters = () => {
+    let filterOn = this.state.filterOn;
+    Animated.timing(
+      this.state.filterHeight, 
+      {toValue: !filterOn ? 72 : 0,
+      easing: Easing.cubic}
+    ).start();
+    this.setState({
+      filterOn: !filterOn
+    });
   }
 
   switchCategory = (category) => {
@@ -44,7 +56,7 @@ class Historico extends React.Component {
       }
       return (
         <View>
-          <View style={styles.categoryView}>
+          <Animated.View style={[styles.categoryView, {height: this.state.filterHeight}]}>
           {Object.keys(categoryData).map(e => {
               let cat = categoryData[e];
               return <CategoryBtn 
@@ -55,7 +67,7 @@ class Historico extends React.Component {
                 onPress={() => this.switchCategory(e)}
               />
             })}
-          </View>
+          </Animated.View>
           <FlatList
             data={cards.reverse()}
             renderItem={
@@ -83,6 +95,12 @@ class Historico extends React.Component {
     return (
       <View style={{...commonStyles.container, justifyContent: 'flex-start'}}>
         {this.historico()}
+        {this.user.gastos ? 
+          <FAB 
+            icon={this.state.filterOn?'check':'filter'} 
+            onPress={this.toggleFilters}
+          />
+        : null}
       </View>
     )
   }
@@ -93,7 +111,7 @@ const styles = StyleSheet.create({
     width: dimensions.width - 32,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    marginBottom: 16
+    overflow: 'hidden'
   }
 });
 

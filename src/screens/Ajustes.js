@@ -112,7 +112,7 @@ class Ajustes extends React.Component {
           </View>
         </View>
   
-        <FAB icon='check' onPress={this.updateUserData}/>
+        <FAB icon='save' onPress={this.updateUserData}/>
       </View>
 
     return this.state.uploading ? uploading : view;
