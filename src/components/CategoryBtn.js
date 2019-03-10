@@ -17,15 +17,15 @@ export const categoryData = {
   },
   lazer: {
     cor: colors.purple,
-    icon: 'umbrella'
+    icon: 'tv'
   },
   compras: {
     cor: colors.orange,
-    icon: 'shopping-cart'
+    icon: 'shopping-bag'
   },
   outro: {
     cor: colors.blue,
-    icon: 'grid'
+    icon: 'globe'
   },
 };
 

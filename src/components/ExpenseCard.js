@@ -49,7 +49,7 @@ class ExpenseCard extends React.Component {
             <Icon
               style={{marginLeft: 12}}
               name={'chevron-' + (expanded ? 'up':'down')}
-              size={24} 
+              size={20} 
               color='#fff'
             />
         </TouchableOpacity>

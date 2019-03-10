@@ -4,7 +4,6 @@ import {
   View,
   ScrollView,
 } from 'react-native';
-import * as firebase from 'firebase';
 import { commonStyles, colors } from '../theme';
 import Pie from 'react-native-pie';
 import FAB from '../components/FAB';
@@ -54,14 +53,15 @@ const Financas = (props) => {
   let { cards, piedata } = processUserData(user);
   return (
     <View style={commonStyles.container}>
-      <View style={{flex: 1, justifyContent: 'center'}}>
+      <View style={styles.section}>
         <Pie
           radius={75}
           series={piedata.values}
           colors={piedata.colors}
+          backgroundColor={colors.primary}
         />
       </View>
-      <View style={{flex: 1, justifyContent: 'center'}}>
+      <View style={styles.section}>
         <ScrollView>
           {cards}
         </ScrollView>
@@ -71,5 +71,12 @@ const Financas = (props) => {
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  section: {
+    flex: 1,
+    justifyContent: 'center'
+  }
+})
 
 export default Financas;

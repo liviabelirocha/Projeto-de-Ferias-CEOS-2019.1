@@ -14,17 +14,17 @@ export const categoryData = [
   {
     nome: 'lazer',
     cor: colors.purple,
-    icon: 'umbrella'
+    icon: 'game-controller'
   },
   {
     nome: 'compras',
     cor: colors.orange,
-    icon: 'shopping-cart'
+    icon: 'basket-loaded'
   },
   {
     nome: 'outro',
     cor: colors.blue,
-    icon: 'globe'
+    icon: 'grid'
   },
 ];
 

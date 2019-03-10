@@ -9,9 +9,10 @@ import {
   CheckBox,
   ActivityIndicator
 } from 'react-native';
+import * as firebase from 'firebase';
 import { ImagePicker, Permissions } from 'expo';
 import Icon from 'react-native-vector-icons/Feather';
-import * as firebase from 'firebase';
+import FAB from '../components/FAB';
 import { commonStyles, colors } from '../theme';
 
 class Ajustes extends React.Component {
@@ -111,11 +112,7 @@ class Ajustes extends React.Component {
           </View>
         </View>
   
-        <TouchableOpacity
-          style={commonStyles.button}
-          onPress={this.updateUserData}>
-          <Text style={commonStyles.text}>SALVAR</Text>
-        </TouchableOpacity>
+        <FAB icon='check' onPress={this.updateUserData}/>
       </View>
 
     return this.state.uploading ? uploading : view;

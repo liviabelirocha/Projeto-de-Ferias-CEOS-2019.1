@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Image
 } from 'react-native';
-
+import FAB from '../components/FAB';
 import { commonStyles } from '../theme';
 import { logout } from '../auth';
 
@@ -15,11 +15,8 @@ const Logout = (props) => {
     <View style={commonStyles.container}>
       <Image style={styles.picture} source={{uri: props.user.photoURL}}/>
       <Text style={commonStyles.title}>{props.user.nome}</Text>
-
-      <Text style={[commonStyles.onSurfaceText, {marginBottom: 16}]}>Não se preocupe, seus dados permanecerão salvos.</Text>
-      <TouchableOpacity style={commonStyles.button} onPress={logout}>
-        <Text style={commonStyles.text}>LOGOUT</Text>
-      </TouchableOpacity>
+      <Text style={[commonStyles.onSurfaceText, {marginBottom: 16}]}>Seus dados permanecerão salvos para a próxima vez.</Text>
+      <FAB icon='log-out' onPress={logout} />
     </View>
   )
 }
